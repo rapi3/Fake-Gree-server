@@ -3,6 +3,7 @@ Description=Gree Server Service
 After=network.target
 # restart forever
 StartLimitIntervalSec=0
+# check: systemctl --version 
 # before systemd-230 change to 
 #StartLimitInterval=0
 
