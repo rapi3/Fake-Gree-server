@@ -1,6 +1,10 @@
 [Unit]
 Description=Gree Server Service
 After=network.target
+# restart forever
+StartLimitIntervalSec=0
+# before systemd-230 change to 
+#StartLimitInterval=0
 
 [Service]
 Type=simple
@@ -8,10 +12,8 @@ User=root<change for you>
 WorkingDirectory=<change for you>/opt/fakegree
 ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
 Restart=always
-#Restart=on-failure
-StartLimitBurst=2
-# Restart, but not more than once every 10 minutes
-StartLimitInterval=600
+# Restart, after 5 minutes
+RestartSec=300
 
 [Install]
 WantedBy=multi-user.target
