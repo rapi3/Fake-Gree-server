@@ -4,10 +4,16 @@ After=network.target
 
 [Service]
 Type=simple
-User=pokelab
-WorkingDirectory=<changeme>/gree/Fake-Gree-server/fakegree
-ExecStart=<changeme>/gree/Fake-Gree-server/fakegree/venv/bin/python <changeme>/gree/Fake-Gree-server/fakegree/gree_server.py 0.0.0.0 1813 eu.dis.gree.com True
+User=root<change for you>
+WorkingDirectory=<change for you>/opt/fakegree
+ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
 Restart=always
+#Restart=on-failure
+StartLimitBurst=2
+# Restart, but not more than once every 10 minutes
+StartLimitInterval=600
+# Restart, but not more than once every 30s (for testing purposes)
+#StartLimitInterval=60
 
 [Install]
 WantedBy=multi-user.target
