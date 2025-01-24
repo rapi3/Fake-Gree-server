@@ -3,8 +3,8 @@ Fake Gree server implementation to mitigate the need to let Gree/Syen HVAC units
 **It works for both Gree and Syen HVAC units** _(As Syen is mostly produced by Gree. My Syen literally has a Gree WiFi module with a Gree MAC address)_
 
 # Why?
-Because Gree and Syen HVAC units' WiFi control does not work unless they can register to a server successfully and then keep a heartbeat connection up from time to time. I really dislike the idea of having any of my IoT devices wander the internet on their own, despite the fact I (as any sane person should too) keep them in a very well separated IoT network. If you can prevent any home-calls, why shouldn't you? :)
-From 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and as a result HA integration will not work any more so I have to set-up the Fake server to be able to control my AC unit located in amother location.
+Because Gree and Syen HVAC units' WiFi control does not work unless they can register to a server successfully and then keep a heartbeat connection up from time to time. I really dislike the idea of having any of my IoT devices wander the internet on their own, despite the fact I (as any sane person should too) keep them in a very well separated IoT network. If you can prevent any home-calls, why shouldn't you? :)<br>
+For me starting from 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and as a result HA integration will not work any more so I have to set-up the Fake server to be able to control my AC unit located in amother location.
 
 # How it's working
 You need to have your Gree unit connected to wifi, it is already connected on your wifi there is no need to reset the unit.<br>
