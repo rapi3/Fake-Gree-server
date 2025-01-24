@@ -10,11 +10,11 @@ StartLimitIntervalSec=0
 [Service]
 Type=simple
 User=root<change for you>
-WorkingDirectory=<change for you>/opt/fakegree
-ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
 Restart=always
 # Restart, after 5 minutes
 RestartSec=300
+WorkingDirectory=<change for you>/opt/fakegree
+ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
 
 [Install]
 WantedBy=multi-user.target
