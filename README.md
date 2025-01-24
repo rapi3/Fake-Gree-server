@@ -20,7 +20,7 @@ There are some things you need to have working before you can use this hack solu
 # Setting it all up
 1. Download, review, edit to your needs or simply jump to building & running the fake sever. _(The bare minimum you should probably change is the IP address in the gree_server.service or docker-compose.yml files to fit into your subnet in which the HVAC unit will reside too.)_
 `docker-compose build && docker-compose up -d`<br>
-test it after you changed the IP/location and in some cases the port 1812 need to be changed to another one: 1813, 5000....find what port work for your AC ( if you can monitor the communication from AC on firewall ) :<br>
+test it after you changed the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000....find what port work for your AC ( if you can monitor the communication from AC on firewall ) :<br>
 `python3 /opt/fakegree/gree_server.py <SERVER_IP> 1812 eu.dis.gree.com`<br>and if it is ok you can set-up and start the service in linux.<br>
 2. Turn off the HVAC unit and reset the WiFi settings _(MODE + WIFI usually)_
 3. Wait ~ 2 minutes and once the HVAC unit's WiFi comes online, connect to it from a laptop or some other device! (SSID will be the last few bytes of its MAC address, the password is `12345678`)
