@@ -13,7 +13,7 @@ COPY . .
 # Generate SSL certificates
 RUN openssl genpkey -algorithm RSA -out server.key && \
     openssl req -new -key server.key -out server.csr -config openssl.cnf && \
-    openssl x509 -req -days 365 -in server.csr -signkey server.key -out server.crt
+    openssl x509 -req -days 99999 -in server.csr -signkey server.key -out server.crt
 
 # Run the server
 CMD ["python", "gree_server.py"]
