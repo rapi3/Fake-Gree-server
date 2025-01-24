@@ -12,8 +12,6 @@ Restart=always
 StartLimitBurst=2
 # Restart, but not more than once every 10 minutes
 StartLimitInterval=600
-# Restart, but not more than once every 30s (for testing purposes)
-#StartLimitInterval=60
 
 [Install]
 WantedBy=multi-user.target
