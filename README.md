@@ -25,4 +25,4 @@ If you don't use docker; copy gree_server.py and gree_server_tls.py to /opt/fake
 For new versions of AC that use TLS you have to use gree_server_tls.py and generate the server certificate ( read how to do it in: Dockerfile ) so you have to change the service to start tls server.<br>
 `python3 /opt/fakegree/gree_server_tls.py <SERVER_IP> <PORT> eu.dis.gree.com True`<br>
 2. Turn off/on the HVAC unit and in a few seconds the fake server should be receiving all sorts of connections and everything will be working.
-3. If it is ok you can set-up the service in /etc/systemd/system (enable and start).<br>
+3. If it is ok you can copy and set-up the service: gree_server.service in /etc/systemd/system (enable and start).<br>
