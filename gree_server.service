@@ -1,20 +1,23 @@
 [Unit]
 Description=Gree Server Service
 After=network.target
-# restart forever
+## restart forever
 StartLimitIntervalSec=0
-# check: systemctl --version 
-# before systemd-230 change to 
+## check: systemctl --version 
+## before systemd-230 change to 
 #StartLimitInterval=0
 
 [Service]
 Type=simple
 User=root<change for you>
 Restart=always
-# Restart, after 5 minutes
+## Restart, after 5 minutes
 RestartSec=300
 WorkingDirectory=<change for you>/opt/fakegree
+## For normal server use:
 ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
+## For TLS server use:
+#ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com True
 
 [Install]
 WantedBy=multi-user.target
