@@ -194,7 +194,7 @@ class GreeSrv:
         return ssl_client_conn
 
 
-host_input = os.getenv("SERVER_HOST", "0.0.0.0")
+host_input = os.getenv("SERVER_HOST", "127.0.0.1")
 port_input = int(os.getenv("SERVER_PORT", "1812"))
 hostname_input = os.getenv("SERVER_DOMAIN", "eu.dis.gree.com")
 tls_input = os.getenv("TLS", "False")
