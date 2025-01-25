@@ -18,7 +18,7 @@ There are some things you need to have working before you can use this hack solu
 * A firewall or a DNS server ( pfSense/OPNsense... or pihole ) serving a DNS override of `eu.dis.gree.com` with the IP address of your fake server. You could also block all connections sourcing from the AC unit and going to WAN.<br>
 
 # Setting it all up
-1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override to point to your Server_IP, in my case it is `eu.dis.gree.com` and port 1812 and 5000.<br>
+1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override to point to your SERVER_IP, in my case it is `eu.dis.gree.com` and port 1812 and 5000.<br>
 2. Download, review, edit to your needs and change the SERVER_IP and in some cases the PORT 1812 need to be changed to another one: 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can.<br>
    Copy gree_server.py and gree_server_tls.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
 `python3 /opt/fakegree/gree_server.py <SERVER_IP> <PORT> eu.dis.gree.com`<br>
