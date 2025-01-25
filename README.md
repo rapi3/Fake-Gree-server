@@ -20,7 +20,9 @@ There are some things you need to have working before you can use this hack solu
 
 # Setting it all up
 1. Download, review, edit to your needs and change the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can monitor the communication from AC on firewall to see to what domain/IP and port it is connecting.<br>
-If you don't use docker copy gree_server.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
+If you don't use docker copy gree_server.py and gree_server_tls.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
+For new versions of AC that use TLS you have to use gree_server_tls.py and generate the server certificate so you have to change the service to start tls server.<br>
 `python3 /opt/fakegree/gree_server.py <SERVER_IP> <PORT> eu.dis.gree.com`<br>
+`python3 /opt/fakegree/gree_server_tls.py <SERVER_IP> <PORT> eu.dis.gree.com True`<br>
 2. Turn off/on the HVAC unit and in a few seconds the fake server should be receiving all sorts of connections and everything will be working.
 3. If it is ok you can set-up the service in /etc/systemd/system (enable and start).<br>
