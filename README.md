@@ -19,7 +19,7 @@ There are some things you need to have working before you can use this hack solu
 
 # Setting it all up
 1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override to point to your Server_IP, in my case it is `eu.dis.gree.com` and port 1812 and 5000.<br>
-2. Download, review, edit to your needs and change the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can.<br>
+2. Download, review, edit to your needs and change the SERVER_IP and in some cases the PORT 1812 need to be changed to another one: 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can.<br>
    Copy gree_server.py and gree_server_tls.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
 `python3 /opt/fakegree/gree_server.py <SERVER_IP> <PORT> eu.dis.gree.com`<br>
 For new versions of AC that use TLS you have to use gree_server_tls.py and generate the server certificate ( read how to do it in: Dockerfile ) so you have to change the service to start tls server.<br>
