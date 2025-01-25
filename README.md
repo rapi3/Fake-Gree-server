@@ -19,7 +19,7 @@ There are some things you need to have working before you can use this hack solu
 * Your Gree unit connected to wifi.<br>
 
 # Setting it all up
-1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override in my case it is `eu.dis.gree.com` to point to your Server_IP.<br>
+1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override, in my case it is `eu.dis.gree.com` to point to your Server_IP.<br>
 2. Download, review, edit to your needs and change the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can.<br>
    Copy gree_server.py and gree_server_tls.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
 `python3 /opt/fakegree/gree_server.py <SERVER_IP> <PORT> eu.dis.gree.com`<br>
@@ -29,6 +29,6 @@ For new versions of AC that use TLS you have to use gree_server_tls.py and gener
 4. If it is ok you can copy and set-up the service: gree_server.service in /etc/systemd/system (enable and start).<br>
 
 # Problems
-1. If server will encounter an error, service will restart after 5 min because OS need ~60 sec time to free the port so if you test multiple time please wait or check if port it is still used: netstat -tulpn | grep 1812
+1. If server will encounter an error, service will restart after 5 min because OS need ~60 sec time to free the port so if you test multiple time please wait or check if port it is free or used: netstat -tulpn | grep 1812
 2. I prefer to use the no TLS server version because for me it work.
    For TLS server it looks like you need to edit the python file and change SERVER_HOST with your Server_IP or something it is not right in that implementation ??
