@@ -17,7 +17,7 @@ WorkingDirectory=<change for you>/opt/fakegree
 ## For normal server use:
 ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com
 ## For TLS server use:
-#ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server.py 192.168.12.28 1812 eu.dis.gree.com True
+#ExecStart=<change for you>/bin/python3 /opt/fakegree/gree_server_tls.py 192.168.12.28 1812 eu.dis.gree.com True
 
 [Install]
 WantedBy=multi-user.target
