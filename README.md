@@ -1,37 +1,26 @@
+# First Saying Thanks:
+* .. to markv9401 for this project Fake-Gree-server: https://github.com/markv9401/Fake-Gree-server
+* .. to emtek-at for their project GreeAC-DummyServer: https://github.com/emtek-at/GreeAC-DummyServer
+* .. to tomikaa87 for his project gree-remote: https://github.com/tomikaa87/gree-remote
+* .. to all that made this possible.
+  
 # Fake-Gree-server
-Fake Gree server implementation to mitigate the need to let Gree/Syen HVAC units do homecalls at all, starting from the registration.
-**It works for both Gree and Syen HVAC units** _(As Syen is mostly produced by Gree. My Syen literally has a Gree WiFi module with a Gree MAC address)_
+Fake Gree server implementation to have Gree HVAC units work without internet connection to home server.
 
 # Why?
-Because Gree and Syen HVAC units' WiFi control does not work unless they can register to a server successfully and then keep a heartbeat connection up from time to time. I really dislike the idea of having any of my IoT devices wander the internet on their own, despite the fact I (as any sane person should too) keep them in a very well separated IoT network. If you can prevent any home-calls, why shouldn't you? :)<br>
-For me starting from 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and as a result HA integration will not work any more so I have to set-up the Fake server to be able to control my AC unit located in amother location.
+Because for Gree AC units' WiFi control does not work unless they can register to a Gree Server successfully and then keep a heartbeat connection up from time to time.<br>
+For me starting from 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and are offline and as a result HA integration will not work any more so I have to set-up this Fake server to be able to control my AC unit located in amother location.
 
 # How it's working
-You need to have your Gree unit connected to wifi, it is already connected on your wifi there is no need to reset the unit.<br>
-If you reset your unit's WiFi, you can register following the registration procedure described in the next points (and in the fake server log on startup) and you forget about it.
-
-# Prerequisites
-There are some things you need to have working before you can use this hack solution:
-* A DNS server serving (at least) the (separate?) network onto which the HVAC unit will be connected to
-* A DNS override of `eu.dis.gree.com` to the IP address of this fake server _(implicated reserving a static ip for the server)_
-* You could additionally block all other connections sourcing from the HVAC unit except for DNS requests towards your DNS server and TCP/1812 towards this fake server
-* For the registration / activation process you'll need a WiFi and Python3 capable device _(laptop or possibly some phones)_
+There are some things you need to have working before you can use this hack solution:<br>
+* Have your Linux server to host this fake server ( python3 ) to respond to AC home calls.<br>
+* A firewall and a DNS server ( pfSense/OPNsense... ) serving a DNS override of `eu.dis.gree.com` to the IP address of your fake server.<br>
+* You could additionally block all other connections sourcing from the AC unit and going to WAN.<br>
+* Your Gree unit connected to wifi.<br>
 
 # Setting it all up
-1. Download, review, edit to your needs or simply jump to building & running the fake sever. _(The bare minimum you should probably change is the IP address in the gree_server.service or docker-compose.yml files to fit into your subnet in which the HVAC unit will reside too.)_
-`docker-compose build && docker-compose up -d`<br>
-test it after you changed the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000....find what port work for your AC ( if you can monitor the communication from AC on firewall ) :<br>
-`python3 /opt/fakegree/gree_server.py <SERVER_IP> 1812 eu.dis.gree.com`<br>and if it is ok you can set-up the service in /etc/systemd/system (enable and start).<br>
-2. Turn off the HVAC unit and reset the WiFi settings _(MODE + WIFI usually)_
-3. Wait ~ 2 minutes and once the HVAC unit's WiFi comes online, connect to it from a laptop or some other device! (SSID will be the last few bytes of its MAC address, the password is `12345678`)
-4. Run `python3 register.py YOUR_WIFI'S_SSID YOUR_WIFI'S_PASSWORD`
-5. In a few seconds the fake server should be receiving all sorts of connections and everything will be working.
-
-# Limitations
-* I don't think the usualy Gree applications work like this, at all. They don't really, for me, at least. **Homeassistant** is an amazing project and it works flawlessly, however! _(Including the automatic discovery and all!)_ Check it out, so much better than the stock apps anyway [with zero homecalls :)]  Thanks to RobHofmann's https://github.com/RobHofmann/HomeAssistant-GreeClimateComponent )_ 
-* Nothing else really. After setting all up I tried shutting down the fake server for a few hours and then firing it back up. The HVAC unit tolerated it nicely, nothing stopped working. I can imagine having the fake server not running for a very long time could cause the HVAC unit to lose its s#*t and start the discovery process again but that would work just fine too since the DNS for the discovery server _(dis.gree.com)_ is overriden :)
-* Absolutely worst case you need to do the registration procedure again. It takes < 1 min. and I never had to do it again, save for the testing. _(In HomeAssistant after re-registrations you may need to reload the Gree module - no need to restart HomeAssistant!)_
-
-# Saying thanks..
-* .. to tomikaa87 for his project gree-remote: https://github.com/tomikaa87/gree-remote
-* .. to emtek-at for their project GreeAC-DummyServer: https://github.com/emtek-at/GreeAC-DummyServer
+1. Download, review, edit to your needs and change the server IP and in some cases the port 1812 need to be changed to another one: 1813, 5000... this depend of your AC model and firmware version so find what port work for your AC unit if you can monitor the communication from AC on firewall to see to what domain/IP and port it is connecting.<br>
+If you don't use docker copy gree_server.py to /opt/fakegree/ and gree_server.service to /etc/systemd/system and test:<br>
+`python3 /opt/fakegree/gree_server.py <SERVER_IP> <PORT> eu.dis.gree.com`<br>
+2. Turn off/on the HVAC unit and in a few seconds the fake server should be receiving all sorts of connections and everything will be working.
+3. If it is ok you can set-up the service in /etc/systemd/system (enable and start).<br>
