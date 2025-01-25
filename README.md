@@ -14,7 +14,7 @@ For me starting from 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com 
 # How it's working
 There are some things you need to have working before you can use this hack solution:<br>
 * Have your Linux server to host this fake server ( python3 ) to respond to AC home calls.<br>
-* A firewall and a DNS server ( pfSense/OPNsense... ) serving a DNS override of `eu.dis.gree.com` to the IP address of your fake server.<br>
+* A firewall or a DNS server ( pfSense/OPNsense... or pihole ) serving a DNS override of `eu.dis.gree.com` to the IP address of your fake server.<br>
 * You could additionally block all other connections sourcing from the AC unit and going to WAN.<br>
 * Your Gree unit connected to wifi.<br>
 
