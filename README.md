@@ -9,13 +9,13 @@ Fake Gree server implementation to have Gree HVAC units work without internet co
 
 # Why?
 Because for Gree AC units' WiFi control does not work unless they can register to a Gree Server successfully and then keep a heartbeat connection up from time to time.<br>
-For me starting from 18-01-2025 gree servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and are offline and as a result HA integration will not work any more and AC unit will flood my WIFI-SSID every 15s connecting and disconnecting because Gree fault, so I have to set-up this Fake server to be able to control my AC unit located in another location from HA.
+For me starting from 18-01-2025 gree IoT servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and are offline and as a result HA integration will not work any more and AC unit will flood my WIFI-SSID every 15s connecting and disconnecting because Gree fault, so I have to set-up this Fake server to be able to control my AC unit located in another location with Home Assistant integration.
 
 # How it's working
 There are some things you need to have working before you can use this hack solution:<br>
 * Your Gree unit connected to wifi.<br>
 * Have your Linux server to host this fake server ( python3 ) to respond to AC home calls.<br>
-* A firewall or a DNS server ( pfSense/OPNsense... or pihole ) serving a DNS override of `eu.dis.gree.com` with the IP address of your fake server. You could also block all connections sourcing from the AC unit and going to WAN.<br>
+* A firewall or a DNS server ( pfSense/OPNsense... or pi-hole ) serving a DNS override of `eu.dis.gree.com` with the IP address of your fake server. You could also block all connections sourcing from the AC unit and going to WAN.<br>
 
 # Setting it all up
 1. If you can; monitor the communication from AC on firewall to see to what domain/IP and port it is connecting and set-up your DNS override to point to your SERVER_IP, in my case it is `eu.dis.gree.com` and port 1812 and 5000.<br>
