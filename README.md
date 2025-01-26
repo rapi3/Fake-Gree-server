@@ -7,7 +7,7 @@
 # Fake-Gree-server
 Fake Gree server implementation to have Gree HVAC units work without internet connection to home server.
 
-# Why?
+# Why ?
 Because for Gree AC units' WiFi control does not work unless they can register to a Gree Server successfully and then keep a heartbeat connection up from time to time.<br>
 For me starting from 18-01-2025 gree IoT servers ( eu.dis.gree.com and dis.gree.com ) seems to have problems and are offline and as a result HA integration will not work any more and AC unit will flood my WIFI-SSID every 15s connecting and disconnecting because Gree fault, so I have to set-up this Fake server to be able to control my AC unit located in another location with Home Assistant integration.
 
