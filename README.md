@@ -31,7 +31,8 @@ For new versions of AC that use TLS you have to use gree_server_tls.py and gener
    check: `systemctl status gree_server.service` or `service gree_server status`<br>
 
 # Problems
-1. If server will encounter an error, I setup the service to restart after 5 min because OS need ~60 sec time to free the opened port, so if you test multiple time please wait or check if port it is free or used: netstat -tulpn | grep 1812
-2. I prefer to use the no TLS server version because for me it work.<br>
+1. Gree chose a strange implementation or it is a bug in firmware: if AC unit can't connect to Gree servers on internet ( or fake server ) I seen on AP log that it will disconnect and reconnect to WIFI-SSID every 15s... what a bummer, they really 
+   succeed to make the unit unusable and to overload your wifi for no reason. :(
+2. If server will encounter an error, I setup the service to restart after 5 min because OS need ~60 sec time to free the opened port, so if you test multiple time please wait or check if port it is free or used: netstat -tulpn | grep 1812
+3. I prefer to use the no TLS server version because for me it work.<br>
    For TLS server it looks like you need to edit the python file and change SERVER_HOST with your Server_IP or something it is not right in that implementation ??
-3. Gree chose a strange implementation or it is a bug in firmware: if AC unit can't connect to Gree servers on internet ( or fake server ) I seen on AP log that it will disconnect and reconnect to WIFI-SSID every 15s... what a bummer, they really succeed to make the unit unusable and to overload your wifi for no reason. :(
